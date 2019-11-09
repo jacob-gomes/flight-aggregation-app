@@ -7,6 +7,8 @@ import com.tokigames.flight.aggregation.controller.model.FlightResponse;
 import com.tokigames.flight.aggregation.service.model.FlightModel;
 
 public class ConvertListOfFlightModelToListOfFlightResponse {
+	
+	private ConvertListOfFlightModelToListOfFlightResponse() {}
 
 	public static List<FlightResponse> convert(List<FlightModel> filterFlightModels) {
 		List<FlightResponse> flightResponses = new ArrayList<>();

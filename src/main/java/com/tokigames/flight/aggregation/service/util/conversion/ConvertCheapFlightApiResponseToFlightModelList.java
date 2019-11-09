@@ -10,6 +10,8 @@ import com.tokigames.flight.aggregation.service.model.CheapFlightApiResponse.Dat
 import com.tokigames.flight.aggregation.service.model.FlightModel;
 
 public class ConvertCheapFlightApiResponseToFlightModelList {
+	
+	private ConvertCheapFlightApiResponseToFlightModelList() {}
 
 	public static List<FlightModel> convert(CheapFlightApiResponse cheapFlightApiResponse) {
 	List<FlightModel> flightModels = new ArrayList<>();

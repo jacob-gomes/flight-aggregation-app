@@ -10,6 +10,8 @@ import com.tokigames.flight.aggregation.service.model.FlightModel;
 
 public class ConvertBusinessFlightApiResponseToFlightModelList {
 
+	private ConvertBusinessFlightApiResponseToFlightModelList() {}
+	
 	public static List<FlightModel> convert(BusinessFlightApiResponse businessFlightApiResponse) {
 		List<FlightModel> flightModels = new ArrayList<>();
 		
