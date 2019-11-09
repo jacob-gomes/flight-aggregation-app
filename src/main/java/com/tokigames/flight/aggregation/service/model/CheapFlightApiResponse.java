@@ -3,6 +3,9 @@ package com.tokigames.flight.aggregation.service.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 
 public class CheapFlightApiResponse {
 	private List<Data> data;
@@ -56,7 +59,6 @@ public class CheapFlightApiResponse {
 			this.arrival = arrival;
 		}
 		
-		
 	}
 
 	/**
@@ -73,5 +75,19 @@ public class CheapFlightApiResponse {
 	 */
 	public void setData(List<Data> data) {
 		this.data = data;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		ObjectMapper mapper = new ObjectMapper();		
+		
+		try {
+			return mapper.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			return "";
+		}
 	}
 }

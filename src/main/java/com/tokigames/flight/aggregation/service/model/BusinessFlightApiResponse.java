@@ -3,6 +3,9 @@ package com.tokigames.flight.aggregation.service.model;
 import java.math.BigDecimal;
 import java.util.List;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class BusinessFlightApiResponse {
 	private List<Data> data;
 	
@@ -72,6 +75,7 @@ public class BusinessFlightApiResponse {
 		public void setArrivalTime(BigDecimal arrivalTime) {
 			this.arrivalTime = arrivalTime;
 		}
+
 	}
 	
 	/**
@@ -86,5 +90,19 @@ public class BusinessFlightApiResponse {
 	 */
 	public void setData(List<Data> data) {
 		this.data = data;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		ObjectMapper mapper = new ObjectMapper();		
+		
+		try {
+			return mapper.writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			return "";
+		}
 	}
 }

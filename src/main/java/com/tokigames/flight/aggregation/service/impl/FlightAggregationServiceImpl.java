@@ -61,6 +61,7 @@ public class FlightAggregationServiceImpl implements FlightAggregationService {
 				
 				if(isDepartureInvalid || isArrivalInvalid || isDepartureTimeInvalid || isArrivalTimeInvalid) {
 					filteredFlightModel.remove(index);
+					index--;
 				}
 		}
 		
@@ -68,26 +69,26 @@ public class FlightAggregationServiceImpl implements FlightAggregationService {
 	}
 
 	private boolean isArrivalTimeInvalid(TimeRange arrivalTimeRange, FlightModel flightModel) {
-		return null == arrivalTimeRange
-				||(arrivalTimeRange.getStartTime() > flightModel.getArrivalTime().longValue()
+		return null != arrivalTimeRange
+				&&(arrivalTimeRange.getStartTime() > flightModel.getArrivalTime().longValue()
 						|| arrivalTimeRange.getEndTime() < flightModel.getArrivalTime().longValue());
 	}
 
 	private boolean isDepartureTimeInvalid(TimeRange departureTimeRange, FlightModel flightModel) {		
-		return null == departureTimeRange
-				||(departureTimeRange.getStartTime() > flightModel.getDepartureTime().longValue()
+		return null != departureTimeRange
+				&&(departureTimeRange.getStartTime() > flightModel.getDepartureTime().longValue()
 						|| departureTimeRange.getEndTime() < flightModel.getDepartureTime().longValue());
 	}
 
 	private boolean isArrivalInvalid(String arrival, FlightModel flightModel) {
-		return null == arrival 
-				|| (!arrival.isEmpty() 
+		return null != arrival 
+				&& (!arrival.isEmpty() 
 						&& !arrival.equals(flightModel.getArrival()));
 	}
 
 	private boolean isDepartureInvalid(String departure, FlightModel flightModel) {		
-		return null == departure 
-				|| (!departure.isEmpty() 
+		return null != departure 
+				&& (!departure.isEmpty() 
 					&& !departure.equals(flightModel.getDeparture()));
 	}
 

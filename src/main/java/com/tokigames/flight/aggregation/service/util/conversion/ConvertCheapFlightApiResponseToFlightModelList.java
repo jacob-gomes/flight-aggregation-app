@@ -37,8 +37,8 @@ public class ConvertCheapFlightApiResponseToFlightModelList {
 		flightModel.setDepartureTime(data.getDeparture());
 		
 		try {
-			flightModel.setArrival(soruceDestinationArray[0]);
-			flightModel.setDeparture(soruceDestinationArray[1]);
+			flightModel.setDeparture(soruceDestinationArray[0]);
+			flightModel.setArrival(soruceDestinationArray[1]);
 		}catch(ArrayIndexOutOfBoundsException e) {
 			throw new FlightAggregationException("Source-Destination not properly specified");
 		}

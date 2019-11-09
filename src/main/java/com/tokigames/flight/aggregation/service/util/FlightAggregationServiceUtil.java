@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,6 +22,8 @@ public class FlightAggregationServiceUtil {
 	
 	private RestTemplate restTemplate;
 	
+	private Logger logger = LoggerFactory.getLogger(FlightAggregationServiceUtil.class); 
+	
 	@PostConstruct
 	public void intitate() {
 		restTemplate = new RestTemplate();
@@ -32,9 +36,11 @@ public class FlightAggregationServiceUtil {
 		
 		if(null == flyingClass || FlightClassEnumerator.BUSINESS.equals(flyingClass)) {
 			businessFlightApiResponse = restTemplate.getForObject(businessFlightUrl, BusinessFlightApiResponse.class);
+			logger.info("Business Flight API response: {}", businessFlightApiResponse.toString());
 		}
 		if(null == flyingClass || FlightClassEnumerator.CHEAP.equals(flyingClass)) {
 			cheapFlightApiResponse = restTemplate.getForObject(cheapFlightUrl, CheapFlightApiResponse.class);
+			logger.info("Cheap Flight API response: {}", cheapFlightApiResponse.toString());
 		}
 		
 		unifiedFlightModel.addAll(
@@ -48,7 +54,7 @@ public class FlightAggregationServiceUtil {
 	}
 	
 	/**
-	 * Sorting by departure time
+	 * Comparing by departure time
 	 * @param firstFlightModel
 	 * @param nextFlightModel
 	 * @return
