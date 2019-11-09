@@ -46,7 +46,7 @@ public class IntegrationTestCases {
 	
     @Test
     public void getAllResponseWithoutFilteration() throws Exception {
-    	
+    	Long previousDepartureTime = -1L;
     	String content = "{}";
     	
     	ResultActions resultActions = mockMvc.perform(post(URL)
@@ -58,6 +58,17 @@ public class IntegrationTestCases {
         
         System.out.println(mockResponse.getContentAsString());
         assertEquals(HttpStatus.OK.value(), mockResponse.getStatus());
+        
+      //check for ascending sorting by Departure time
+        
+        JSONArray responseArray = new JSONArray(mockResponse.getContentAsString());
+        ObjectMapper mapper = new ObjectMapper();
+        
+        for(int index = 0; index < responseArray.length(); index++) {
+        	FlightResponse flightResponse = mapper.readValue(responseArray.get(index).toString(), FlightResponse.class);
+        	assertTrue(previousDepartureTime <= flightResponse.getDepartureTime());
+        	previousDepartureTime = flightResponse.getDepartureTime();
+        }
     }
     
     @Test

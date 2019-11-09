@@ -32,7 +32,7 @@ public class ConvertCheapFlightApiResponseToFlightModelList {
 		FlightModel flightModel = new FlightModel();
 		String[] soruceDestinationArray = data.getRoute().split("-");
 		
-		flightModel.setFlightClass(FlightClassEnumerator.BUSINESS);		
+		flightModel.setFlightClass(FlightClassEnumerator.CHEAP);		
 		flightModel.setArrivalTime(data.getArrival());
 		flightModel.setDepartureTime(data.getDeparture());
 		

@@ -3,10 +3,9 @@ package com.tokigames.flight.aggregation.service.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -24,10 +23,10 @@ public class FlightAggregationServiceUtil {
 	
 	private Logger logger = LoggerFactory.getLogger(FlightAggregationServiceUtil.class); 
 	
-	@PostConstruct
-	public void intitate() {
-		restTemplate = new RestTemplate();
-	}
+	@Autowired
+	public FlightAggregationServiceUtil(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}	
 
 	public List<FlightModel> getClassSpecificFlightModelsUsingApi(FlightClassEnumerator flyingClass, String businessFlightUrl, String cheapFlightUrl) {
 		BusinessFlightApiResponse businessFlightApiResponse = null;
