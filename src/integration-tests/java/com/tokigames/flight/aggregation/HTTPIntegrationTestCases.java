@@ -27,7 +27,7 @@ import com.tokigames.flight.aggregation.controller.model.FlightResponse;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = App.class)
 @WebAppConfiguration
-public class IntegrationTestCases {
+public class HTTPIntegrationTestCases {
 	
     
     public static final String URL = "/";
